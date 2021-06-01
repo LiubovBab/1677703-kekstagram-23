@@ -1,13 +1,15 @@
-//доп. функция "Количество машин"
-function car (min, max){
-  const quantity = Math.random();
-  return Math.floor(quantity);
-}
-//Функция для проверки максимальной длины строки
-const lengthComments = 141;
-function writeComments (comments, lengthComments){
-  if (comments<=lengthComments){
-    writeComments=true;
+//доп. функция
+let getRandomNumber = function (min, max){
+  if (min< 0||min>=max){
+    return 'Неверный диапазон'
   }
-  writeComments=false;
-}
+return Math.floor(Math.random()*(max-min+1))+min;}
+
+//Функция для проверки максимальной длины строки
+
+let testCommentsLength = function (comments, lengthComments){
+  if (comments.length>lengthComments){
+    return false;
+  }
+  return true;};
+testCommentsLength('',140);
