@@ -3,7 +3,7 @@ let getRandomNumber = function (min, max){
   if (min< 0||min>=max){
     return 'Неверный диапазон';
   }
-return Math.floor(Math.random()*(max-min+1))+min;}
+return Math.floor(Math.random()*(max-min+1))+min;};
 
 //Функция для проверки максимальной длины строки
 
