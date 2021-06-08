@@ -59,7 +59,7 @@ const comments = ()=> {
 //Генерация случайного ID объекта
 let genObjId = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
 let genObjIdIndex = function (){ for (let i=0; i < genObjId.length; i++)
-  return genObjId[i]};
+  return genObjId[i]};//возможно не нужна эта переменная
 
 //Получение количества лайков (генерация случайного числа от 15 до 200)
 let likesIndex = function (){ for (let j=15; j <= 200; j++)
