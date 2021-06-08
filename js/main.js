@@ -6,7 +6,6 @@ let getRandomNumber = function (min, max){
     return 'Неверный диапазон';
   }
 return Math.floor(Math.random()*(max-min+1))+min;};
-console.log(getRandomNumber);
 
 //Функция для проверки максимальной длины строки
 
@@ -16,7 +15,6 @@ let testCommentsLength = function (comments, lengthComments){
   }
   return true;};
 testCommentsLength('',140);
-console.log (testCommentsLength);
 
 //Создание случайного комментария
 const commentsId =[];//случайный идентификатор комментария
