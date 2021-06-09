@@ -42,6 +42,7 @@ const message = [//массив текста комментария
    'Варвара',
    'Андрей',
  ];
+ 
 //случайный комментарий
 const getRandomArrayElement = (elements) => {
   return elements[_.random(0, elements.length - 1)];
