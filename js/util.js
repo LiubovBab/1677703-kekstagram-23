@@ -44,5 +44,6 @@ let getRandomNumber = function (min, max){
     if (comments.length>lengthComments){
       return false;
     }
-    return true;};
+    return true;
+  };
   testCommentsLength('',140);
