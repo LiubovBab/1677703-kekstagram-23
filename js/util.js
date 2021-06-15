@@ -1,6 +1,6 @@
 import {commentsId, avatar, message, name} from './data.js';
 
-//доп. функция
+//Получение случайного числа
 let getRandomNumber = function (min, max){
     if (min< 0||min>=max){
       return 'Неверный диапазон';
@@ -19,7 +19,7 @@ const getRandomArrayElement = (elements) => {
       name: name[_.random(0, name.length - 1)]
     }
   }
-  
+
   //Получение количества лайков (генерация случайного числа от 15 до 200)
   let likesIndex = function (){ for (let j=15; j <= 200; j++)
       return likesIndex[j]}
