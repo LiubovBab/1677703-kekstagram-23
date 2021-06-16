@@ -24,4 +24,4 @@ const name = [
   'Варвара',
   'Андрей',
 ];
-export {commentsId, avatar, message, name}
+export {commentsId, avatar, message, name};
