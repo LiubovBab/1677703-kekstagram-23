@@ -1,4 +1,4 @@
-import {commentsId, avatar, message, name} from './data.js';
+import {avatar, message, name} from './data.js';
 
 //Получение случайного числа
 const getRandomNumber = function (min, max){
@@ -7,33 +7,45 @@ const getRandomNumber = function (min, max){
   }
   return Math.floor(Math.random()*(max-min+1))+min;};
 
-//Создание случайного комментария
-const getRandomArrayElement = (elements) => {
-  elements = elements[_.random(0, elements.length - 1)];
-  return elements;
+//Получение случайного неповторяющегося числа
+const makeUniqueRandomIntegerGenerator = (min, max) => {
+  const previousValues = [];
+
+  return () => {
+    let currentValue = getRandomNumber(min, max);
+    if (previousValues.length >= (max - min + 1)) {
+      throw new Error(`Перебраны все числа из диапазона от ${  min  } до ${  max}`);
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomNumber(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
 };
+
+//Coздание неповторяющегося индетефикатора описания
+const descriptionId = makeUniqueRandomIntegerGenerator (0, 25);
+
+//Создание случайного комментария
 const comments = () => ({
-  comments: comments[_.random(0, commentsId.length - 1)],
-  avatar: avatar[_.random(0, avatar.length - 1)],
-  message: message[ _.random(0, message.length - 1)],
-  name: name[_.random(0, name.length - 1)],
+  id: makeUniqueRandomIntegerGenerator,
+  avatar: getRandomNumber(0, avatar.length - 1),
+  message: getRandomNumber(0, message.length - 1),
+  name: getRandomNumber(0, name.length - 1),
 });
 comments();
 
-//Получение количества лайков (генерация случайного числа от 15 до 200)
-const likesIndex = function ()
-{for (let j=15; j <= 200; j++) {likesIndex[j];};
-  return likesIndex[j];};
 //случайный объект
 const generatedObjects = () =>({
-  id:  getRandomNumber(0, 25),
-  url: 'photos/${getRandomNumber(0, 25)}.jpg',
-  likes: likesIndex,
-  comments: getRandomArrayElement,
+  id:  descriptionId,
+  url: 'photos{descriptionId}.jpg',
+  likes: getRandomNumber(0, 200),
+  comments: comments,
 });
 export {generatedObjects};
 
-//Функция для проверки максимальной длины строки; 
+//Функция для проверки максимальной длины строки;
 const testCommentsLength = function (commentsTest, lengthComments){
   if (commentsTest.length>lengthComments){
     return false;
