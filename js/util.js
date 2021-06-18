@@ -1,4 +1,4 @@
-import {avatar, message, name} from './data.js';
+import {avatar, message, name, userPhotoCount, userComentCount, description} from './data.js';
 
 //Получение случайного числа
 const getRandomNumber = function (min, max){
@@ -28,22 +28,31 @@ const makeUniqueRandomIntegerGenerator = (min, max) => {
 const descriptionId = makeUniqueRandomIntegerGenerator (0, 25);
 
 //Создание случайного комментария
-const comments = () => ({
-  id: makeUniqueRandomIntegerGenerator,
-  avatar: getRandomNumber(0, avatar.length - 1),
+const createComments = () => ({
+  commentId: makeUniqueRandomIntegerGenerator,
+  avatar: `img/avatar-${getRandomNumber(0, avatar.length - 1)}.svg`,
   message: getRandomNumber(0, message.length - 1),
   name: getRandomNumber(0, name.length - 1),
 });
-comments();
 
-//случайный объект
+const getRandomArrayElement = (elements) => {
+  elements = getRandomNumber(0, elements.length - 1);
+  return elements;};
+
+const descriptionUrl = makeUniqueRandomIntegerGenerator (0, 25);
+descriptionUrl();
+
+///случайный объект
 const generatedObjects = () =>({
-  id:  descriptionId,
-  url: 'photos{descriptionId}.jpg',
-  likes: getRandomNumber(0, 200),
-  comments: comments,
+  id:  descriptionId(),
+  url: 'photos{descriptionUrl()}.jpg',
+  description: getRandomArrayElement(description),
+  likes: getRandomNumber(15, 200),
+  comment: new Array(getRandomNumber(1,userComentCount.length - 1)).full(null).map(()=>createComments()),
 });
-export {generatedObjects};
+
+const userPhoto = new Array(userPhotoCount).fill(null).map(()=>generatedObjects());
+
 
 //Функция для проверки максимальной длины строки;
 const testCommentsLength = function (commentsTest, lengthComments){
@@ -53,3 +62,5 @@ const testCommentsLength = function (commentsTest, lengthComments){
   return true;
 };
 testCommentsLength('',140);
+
+export {userPhoto};

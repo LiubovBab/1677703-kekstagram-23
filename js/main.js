@@ -1,2 +1,2 @@
-import {generatedObjects} from './util.js';
-generatedObjects();
+import {userPhoto} from './util.js';
+userPhoto();

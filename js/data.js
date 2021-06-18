@@ -1,5 +1,4 @@
 //Данные для создания случайного комментария
-const commentsId =[];//случайный идентификатор комментария
 const avatar =[
   'img/avatar-1.svg',
   'img/avatar-2.svg',
@@ -24,4 +23,14 @@ const name = [
   'Варвара',
   'Андрей',
 ];
-export {commentsId, avatar, message, name};
+const userPhotoCount=30;
+const userComentCount=6;
+const description = [
+  'Буква К',
+  'Колокольчик',
+  'Мороженко',
+  'Бабочка',
+  'Снежинка',
+  'Машина',
+];
+export {avatar, message, name, userPhotoCount, userComentCount, description};
