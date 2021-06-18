@@ -1,2 +1,3 @@
-import {userPhoto} from './util.js';
-userPhoto();
+
+import { userPhotos } from './util.js';
+console.log(userPhotos);

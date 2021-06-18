@@ -1,20 +1,33 @@
-import {avatar, message, name, userPhotoCount, userComentCount, description} from './data.js';
+import { description, message, names, userPhotoСount, userCommentСount } from './data.js';
 
-//Получение случайного числа
-const getRandomNumber = function (min, max){
-  if (min< 0||min>=max){
-    return 'Неверный диапазон';
+//Функция генерации случайного числа
+const getRandomNumber = function (min, max) {
+  if (min < 0 || min >= max) {
+    return 'неверный диапазон';
   }
-  return Math.floor(Math.random()*(max-min+1))+min;};
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+getRandomNumber(0, 1000);
 
-//Получение случайного неповторяющегося числа
+//Функция проверки длины вводимого сообщения
+const testTextLength = function (text, length) {
+  if (text.length > length) {
+    return false;
+  }
+
+  return true;
+};
+testTextLength('', 140);
+
+//Функция генерации неповторяющегося числа
+
 const makeUniqueRandomIntegerGenerator = (min, max) => {
   const previousValues = [];
 
   return () => {
     let currentValue = getRandomNumber(min, max);
     if (previousValues.length >= (max - min + 1)) {
-      throw new Error(`Перебраны все числа из диапазона от ${  min  } до ${  max}`);
+      throw new Error(`Перебраны все числа из диапазона от ${min} до ${max}`);
     }
     while (previousValues.includes(currentValue)) {
       currentValue = getRandomNumber(min, max);
@@ -24,43 +37,31 @@ const makeUniqueRandomIntegerGenerator = (min, max) => {
   };
 };
 
-//Coздание неповторяющегося индетефикатора описания
-const descriptionId = makeUniqueRandomIntegerGenerator (0, 25);
+const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-//Создание случайного комментария
-const createComments = () => ({
-  commentId: makeUniqueRandomIntegerGenerator,
-  avatar: `img/avatar-${getRandomNumber(0, avatar.length - 1)}.svg`,
-  message: getRandomNumber(0, message.length - 1),
-  name: getRandomNumber(0, name.length - 1),
+//Генерация комментария
+const createComment = () => ({
+  commentId: getRandomNumber(1, 25),
+  avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
+  message: getRandomArrayElement(message),
+  userName: getRandomArrayElement(names),
 });
+const getRandomId = makeUniqueRandomIntegerGenerator(1, 25);
+const getRandomUrl = makeUniqueRandomIntegerGenerator(1, 25);
 
-const getRandomArrayElement = (elements) => {
-  elements = getRandomNumber(0, elements.length - 1);
-  return elements;};
-
-const descriptionUrl = makeUniqueRandomIntegerGenerator (0, 25);
-descriptionUrl();
-
-///случайный объект
-const generatedObjects = () =>({
-  id:  descriptionId(),
-  url: 'photos{descriptionUrl()}.jpg',
+//Генерация обьекта
+const greateObject = () => ({
+  id: getRandomId(),
+  url: `photos/${getRandomUrl()}.jpg`,
   description: getRandomArrayElement(description),
   likes: getRandomNumber(15, 200),
-  comment: new Array(getRandomNumber(1,userComentCount.length - 1)).full(null).map(()=>createComments()),
+  comment: new Array(getRandomNumber(1, userCommentСount))
+    .fill(null)
+    .map(() => createComment()),
 });
 
-const userPhoto = new Array(userPhotoCount).fill(null).map(()=>generatedObjects());
+const userPhotos = new Array(userPhotoСount)
+  .fill(null)
+  .map(() => greateObject());
 
-
-//Функция для проверки максимальной длины строки;
-const testCommentsLength = function (commentsTest, lengthComments){
-  if (commentsTest.length>lengthComments){
-    return false;
-  }
-  return true;
-};
-testCommentsLength('',140);
-
-export {userPhoto};
+export { userPhotos };
