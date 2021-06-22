@@ -1,3 +1,4 @@
 
 import { userPhotos } from './util.js';
-console.log(userPhotos);
+userPhotos();
+import './thumbnails.js';

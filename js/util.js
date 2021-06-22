@@ -64,4 +64,4 @@ const userPhotos = new Array(userPhotoСount)
   .fill(null)
   .map(() => greateObject());
 
-export { userPhotos };
+export {userPhotos,createComment, getRandomNumber};
