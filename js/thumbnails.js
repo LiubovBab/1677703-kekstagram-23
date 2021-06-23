@@ -7,7 +7,7 @@ const pattern = pictureRandomUser.querySelector('.picture');
 const clonedPattern = pattern.cloneNode(true);
 //Добавление url
 const attributeSrc= clonedPattern.querySelector('.picture__img');
-attributeSrc.innerHTML = 'url = ""';
+attributeSrc.innerHTML = '<url = "">';
 
 //Добавляем случайное количество лайков в шаблон
 const pictureLikes = clonedPattern.querySelector('.picture__likes');
@@ -15,6 +15,7 @@ const randomLikes = getRandomNumber(15, 200);
 pictureLikes.textContent=randomLikes;
 //добавляем комментарии
 const pictureComments = clonedPattern.querySelector('.picture__comments');
-pictureComments.appendChild=createComment;
+const randomComments = getRandomNumber(createComment);
+pictureComments.appendChild=randomComments;
 
 pattern.appendChild(clonedPattern);
