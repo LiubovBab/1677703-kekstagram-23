@@ -60,8 +60,8 @@ const greateObject = () => ({
     .map(() => createComment()),
 });
 
-const userPhotos = new Array(userPhotoСount)
+const userPhotos = () => new Array(userPhotoСount)
   .fill(null)
   .map(() => greateObject());
 
-export {userPhotos,createComment, getRandomNumber, makeUniqueRandomIntegerGenerator };
+export {userPhotos,getRandomUrl,makeUniqueRandomIntegerGenerator, createComment};

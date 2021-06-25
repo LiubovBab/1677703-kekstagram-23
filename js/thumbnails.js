@@ -1,21 +1,19 @@
 //Модуль, который будет отвечать за отрисовку миниатюр
-import {createComment, getRandomNumber} from './util.js';
+import {userPhotos} from './util.js';
 //находим нужный шаблон
 const pictureRandomUser = document.querySelector('#picture').content;
 const pattern = pictureRandomUser.querySelector('.picture');
-//клонируем шаблон
-const clonedPattern = pattern.cloneNode(true);
-//Добавление url
-const attributeSrc= clonedPattern.querySelector('.picture__img');
-attributeSrc.innerHTML = '<url = "">';
+const blockPicture = document.querySelector('.pictures');
 
-//Добавляем случайное количество лайков в шаблон
-const pictureLikes = clonedPattern.querySelector('.picture__likes');
-const randomLikes = getRandomNumber(15, 200);
-pictureLikes.textContent=randomLikes;
-//добавляем комментарии
-const pictureComments = clonedPattern.querySelector('.picture__comments');
-const randomComments = getRandomNumber(createComment);
-pictureComments.appendChild=randomComments;
+const userPicture = userPhotos();
 
-pattern.appendChild(clonedPattern);
+const userPictureFragment  = document.createDocumentFragment();//создание пустого фрагмента
+
+userPicture.forEach(({url, likes, comment}) => {
+  const clonedPattern = pattern.cloneNode(true);
+  clonedPattern.querySelector('.picture__img').src = url;
+  clonedPattern.querySelector('.picture__likes').textContent=likes;
+  clonedPattern.querySelector('.picture__comments').textContent=comment;
+  userPictureFragment.appendChild(clonedPattern);//наполнение фрагмента
+});
+blockPicture.appendChild(userPictureFragment);
